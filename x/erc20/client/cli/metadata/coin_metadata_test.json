@@ -1,0 +1,21 @@
+{
+  "metadata": [
+    {
+      "description": "The native staking and governance token of the Hekas chain",
+      "denom_units": [
+        {
+          "denom": "ahekas",
+          "exponent": 0
+        },
+        {
+          "denom": "hekas",
+          "exponent": 18
+        }
+      ],
+      "base": "ahekas",
+      "display": "ahekas",
+      "name": "ahekas",
+      "symbol": "HEKAS"
+    }
+  ]
+}

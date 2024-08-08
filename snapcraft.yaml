@@ -1,0 +1,39 @@
+name: hekas
+version: '1.0.0'
+summary: hekas chain
+description: hekas chain
+grade: stable
+confinement: strict
+base: core18
+
+parts:
+  hekas:
+    plugin: dump
+    source: ./
+    override-build: |
+      go env -w GOPROXY=https://goproxy.io,direct
+      cd $SNAPCRAFT_PART_SRC
+      go build -tags snap -o $SNAPCRAFT_PART_INSTALL/hekas ./cmd/hekasd
+    build-snaps:
+      - go
+    build-packages:
+      - gcc
+      - make
+
+layout:
+  /var/lib/hekas:
+    bind: $SNAP_DATA/var/lib/hekas
+
+plugs:
+  dot-hekas:
+    interface: personal-files
+    write:
+      - $HOME/.hekas
+
+apps:
+  hekas:
+    command: hekas
+    plugs:
+      - dot-hekas
+      - network
+      - network-bind
